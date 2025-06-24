@@ -1,0 +1,64 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: frontend-route
+  namespace: my-app
+  uid: 7e1ad929-f5fd-44d9-b80d-886c9b6db549
+  resourceVersion: '876637'
+  creationTimestamp: '2025-06-24T15:15:09Z'
+  annotations:
+    openshift.io/host.generated: 'true'
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: route.openshift.io/v1
+      time: '2025-06-24T15:16:28Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:host': {}
+          'f:port':
+            .: {}
+            'f:targetPort': {}
+          'f:tls':
+            .: {}
+            'f:insecureEdgeTerminationPolicy': {}
+            'f:termination': {}
+          'f:to':
+            'f:kind': {}
+            'f:name': {}
+            'f:weight': {}
+          'f:wildcardPolicy': {}
+    - manager: openshift-router
+      operation: Update
+      apiVersion: route.openshift.io/v1
+      time: '2025-06-24T15:16:28Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:ingress': {}
+      subresource: status
+  labels: {}
+spec:
+  host: simple-login.sirasith.net
+  to:
+    kind: Service
+    name: frontend
+    weight: 100
+  port:
+    targetPort: 3000
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: None
+  wildcardPolicy: None
+  alternateBackends: []
+status:
+  ingress:
+    - host: simple-login.sirasith.net
+      routerName: default
+      conditions:
+        - type: Admitted
+          status: 'True'
+          lastTransitionTime: '2025-06-24T15:16:28Z'
+      wildcardPolicy: None
+      routerCanonicalHostname: router-default.apps.itz-ojeb01.hub03-lb.techzone.ibm.com
